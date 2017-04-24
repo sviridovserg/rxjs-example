@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/sviridovserg/rxjs-example/issues"
   },
-  "homepage": "https://github.com/sviridovserg/rxjs-example#readme"
+  "homepage": "https://github.com/sviridovserg/rxjs-example#readme",
+  "dependencies": {
+    "babel-standalone": "^6.24.0",
+    "rxjs": "^5.3.0"
+  }
 }
