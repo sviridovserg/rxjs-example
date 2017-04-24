@@ -13,16 +13,32 @@
 
     var responseStream = requestStream
         .flatMap((requestUrl) => Rx.Observable.fromPromise(jQuery.getJSON(requestUrl)))
-        .subscribe((r) => {
-            console.log('response');
-            renderUser(r[0], jQuery('.user-list-item'));
-        });
+        ;
+
+    var suggestion1Stream = responseStream
+        .map((listUsers) => listUsers[Math.floor(Math.random()*listUsers.length)])
+        .merge(refreshClickStream.map(() => null))
+        .startWith(null);
+
+    suggestion1Stream.subscribe((suggestion) => {
+        console.log('response');
+        if(!suggestion) {
+            hideUser(jQuery('.user-list-item'))
+        } else {
+            renderUser(suggestion, jQuery('.user-list-item'));
+        }
+
+    });
+
 
     function renderUser(user, userElement) {
-        console.log(user.avatar_url);
-        //console.log(userElement.find('user-list-item')[0])
+        userElement.show();
         userElement.find('.user-avatar').attr('src',   user.avatar_url);
         userElement.find('.user-name').text(user.login);
+    }
+
+    function hideUser(userElement) {
+        userElement.hide();
     }
 })(Rx, jQuery);
 
