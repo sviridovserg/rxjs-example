@@ -8,8 +8,20 @@
         <script src="index.js" type="text/babel"></script>
 
         <style>
+            body {
+                color: #a0a0a0;
+                font-size: 14px;
+            }
+
             .container {
-                min-width: 400px;
+                width: 400px;
+                border: 1px solid #808080;
+                padding: 12px;
+            }
+
+            .header {
+                padding-bottom: 12px;
+                font-size: 18px;
             }
 
             .user-list {
@@ -19,25 +31,42 @@
             .user-list-item {
                 width: 100%;
                 display:flex;
-                align-items: center;
-                /*justify-content: center;*/
             }
 
             .user-avatar {
-                max-width: 40px;
+                max-height: 40px;
             }
+
+            .user {
+                margin: 0 6px;
+                flex: 1;
+            }
+
+            a.button {
+                color: #a0a0a0;
+                cursor: pointer;
+                font-size: 12px;
+            }
+
+
         </style>
     </head>
     <body>
         <div class="container">
-            <div>
-                <button class="refresh">Refresh</button>
+            <div class="header">
+                <span>Who to follow</span>
+                <span>-</span>
+                <a class="button refresh">Refresh</a>
+                <span>-</span>
             </div>
             <div class="user-list">
                 <div class="user-list-item">
                     <img class="user-avatar"></img>
-                    <span class="user-name"></span>
-                    <button class="remove-user">x</button>
+                    <div class="user">
+                        <span class="user-nik"></span>
+                        <a class="user-profile-link" >profile</a>
+                    </div>
+                    <a class="button remove-user">X</a>
                 </div>
             </div>
         </div>

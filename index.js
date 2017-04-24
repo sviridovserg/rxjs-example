@@ -14,17 +14,16 @@
 
     var responseStream = requestStream
         .flatMap((requestUrl) => Rx.Observable.fromPromise(jQuery.getJSON(requestUrl)))
-        ;
+        .flatMap((list) => list);
 
-    var suggestion1Stream = closeClickStream.startWith('startup click')
-        .combineLatest(responseStream, (click, listUsers) => {
-             return listUsers[Math.floor(Math.random()*listUsers.length)];
+    var suggestionStream = closeClickStream.startWith('startup click')
+        .combineLatest(responseStream, (click, user) => {
+            return user;
         })
-        //.map((listUsers) => listUsers[Math.floor(Math.random()*listUsers.length)])
         .merge(refreshClickStream.map(() => null))
         .startWith(null);
 
-    suggestion1Stream.subscribe((suggestion) => {
+    suggestionStream.subscribe((suggestion) => {
         console.log('response');
         if(!suggestion) {
             hideUser(jQuery('.user-list-item'))
@@ -38,7 +37,8 @@
     function renderUser(user, userElement) {
         userElement.show();
         userElement.find('.user-avatar').attr('src',   user.avatar_url);
-        userElement.find('.user-name').text(user.login);
+        userElement.find('.user-profile-link').attr('href',   user.html_url);
+        userElement.find('.user-nik').text(user.login);
     }
 
     function hideUser(userElement) {
