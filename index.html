@@ -8,15 +8,38 @@
         <script src="index.js" type="text/babel"></script>
 
         <style>
+            .container {
+                min-width: 400px;
+            }
 
+            .user-list {
+                width: 100%;
+            }
+
+            .user-list-item {
+                width: 100%;
+                display:flex;
+                align-items: center;
+                /*justify-content: center;*/
+            }
+
+            .user-avatar {
+                max-width: 40px;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div>
-                <buttom class="refresh"></buttom>
+                <button class="refresh">Refresh</button>
             </div>
-
+            <div class="user-list">
+                <div class="user-list-item">
+                    <img class="user-avatar"></img>
+                    <span class="user-name"></span>
+                    <button class="remove-user">x</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>
