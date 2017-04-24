@@ -2,6 +2,7 @@
     console.log('start');
 
     var refreshClickStream = Rx.Observable.fromEvent(jQuery('.refresh'), 'click');
+    var closeClickStream = Rx.Observable.fromEvent(jQuery('.user-list-item .remove-user'), 'click');
 
     // Emited on startup and refresh button click
     var requestStream = refreshClickStream.startWith('startup click')
@@ -15,8 +16,11 @@
         .flatMap((requestUrl) => Rx.Observable.fromPromise(jQuery.getJSON(requestUrl)))
         ;
 
-    var suggestion1Stream = responseStream
-        .map((listUsers) => listUsers[Math.floor(Math.random()*listUsers.length)])
+    var suggestion1Stream = closeClickStream.startWith('startup click')
+        .combineLatest(responseStream, (click, listUsers) => {
+             return listUsers[Math.floor(Math.random()*listUsers.length)];
+        })
+        //.map((listUsers) => listUsers[Math.floor(Math.random()*listUsers.length)])
         .merge(refreshClickStream.map(() => null))
         .startWith(null);
 
