@@ -1,0 +1,23 @@
+{
+  "name": "rxjs-example",
+  "version": "1.0.0",
+  "description": "rxjs followers suggestion example",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sviridovserg/rxjs-example.git"
+  },
+  "keywords": [
+    "rxjs",
+    "reactive-extensions"
+  ],
+  "author": "Sergei Sviridov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sviridovserg/rxjs-example/issues"
+  },
+  "homepage": "https://github.com/sviridovserg/rxjs-example#readme"
+}
